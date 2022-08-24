@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 3000px;
+        }
+        canvas{
+            /* 캔버스사이즈 */
+            width: 100%; height: 100%;
+
+            position: fixed; z-index: 9999999;
+            left: 0; top: 0;
+
+            /* 이벤트처리에서 제외 (캔버스밑에있는 컨텐츠 조작을위해)*/
+            pointer-events: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 캔버스w,h -> 1920px(100%)안에 넣는 상황 "해상도" -> 실제크기와 비율을 맞춰야함-->
+    <canvas></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d') //메소드
+
+        //캔버스의 w,h사이즈를 브라우저로 변경
+        canvas.width = window.innerWidth; //속성
+        canvas.height = window.innerHeight;
+
+        // let r=10, alpha=0;
+        let c = {x:0,y:0,dx:0,dy:0,a:0,r:10};
+        let state = true;
+        function cursorFun(){
+
+            // alpha += 0.1;
+            // if(alpha > 0.8){
+            //     alpha=0.4;
+            //     ctx.clearRect(0,0,canvas.width,canvas.height)
+            // }else{
+            //     requestAnimationFrame(function(){  cursorFun(x,y) })
+            // }
+
+            // 캔버스의 그려놓은 값을 클리어시킴 -> ctx.clearRect(x,y,w,h); 지점의미
+            // ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            if(state){
+                if(c.a > 0.6){
+                    c.a = 0;
+                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                    state=false;
+                }else{
+                    c.a += 0.05;
+                }
+            }
+
+            ctx.beginPath();
+            ctx.fillStyle='#f00';
+            ctx.globalAlpha=c.a; //투명도
+            // ctx.arc(x+10,y,r,0,Math.PI*2,false);
+            ctx.arc(c.x,c.y,c.r,0,Math.PI*2,false);
+            ctx.fill();
+        }
+
+        //마우스 움직일때마다 생기는 좌표 얻기
+        window.addEventListener('mousemove',function(e){
+
+            cursorFun(e.clientX, e.clientY)
+
+        })
+
+        // e.pageX, e.pageY : 문서 기반으로 위치값 줌
+        // e.clientX, e.clientY : 커서 브라우저상 맨위는 0, 맨밑은 900~ / 높이영향안받음
+
+        window.addEventListener('mouseover',function(e){
+
+            // console.log(e.target.tagName) -> 이벤트가 발생한 타겟의 태그네임을 알수있음
+
+            if( e.target.tagName == 'IMG'){
+                r=50;
+            }else{
+                r=10;
+            }
+        })
+
+
+
+    </script>
+
+    <main>
+        <img src="../img/03.jpg">
+    </main>
+
+</body>
+</html>

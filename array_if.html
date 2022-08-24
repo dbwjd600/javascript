@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 0608 -->
+
+    <!-- array_if.html -->
+
+    <style>.exam{white-space:pre-line; line-height: 3;}</style>
+    <div class="exam">
+        첫번째값 => <code class="elValue1"> </code>
+        두번째값 => <code class="elValue2"> </code>
+        세번째값 => <code class="elValue3"> </code>
+        네번째값 => <code class="elValue4"> </code>
+        다섯째값 => <code class="elValue5"> </code>
+
+        총점 => <code class="elTotal"> </code>
+        평균 => <code class="elAvg"> </code>
+        등급 => <code class="elGrade"> </code>
+        합격여부 => <code class="elVerdict"> </code>
+    </div>
+
+    <script>
+// <!-- 
+//     var arrNumber = new Array();
+//     arrNumber[0] = 1;
+//     arrNumber[1] = 2;
+//     arrNumber[2] = 3;
+//     arrNumber=[1,2,3]
+//       : 값을 집어넣는 방법 : 한꺼번에 or 개별적으로
+//         -> push("3") 
+// -->
+
+        // let arrNum = new Array();
+
+        // 선언과 동시에 값지정
+    
+        const elV1=document.querySelector('.elValue1')
+            elV2=document.querySelector('.elValue2')
+            elV3=document.querySelector('.elValue3')
+            elV4=document.querySelector('.elValue4')
+            elV5=document.querySelector('.elValue5')
+
+            elT=document.querySelector('.elTotal')
+            elA=document.querySelector('.elAvg')
+            elG=document.querySelector('.elGrade')
+            elVd=document.querySelector('.elVerdict')
+        
+        let arrNum = [10,20,30,40,50];
+
+        // 개별값 적용
+        arrNum[0] = 10;
+        arrNum[1] = 20;
+        arrNum[2] = 30;
+        arrNum[3] = 40;
+        arrNum[4] = 50;
+
+        let total = arrNum[0]+arrNum[1]+arrNum[2]+arrNum[3]+arrNum[4];
+        let avg = total / arrNum.length;
+        let grade,verdict;
+
+        console.log(total);
+        // console.log(total / arrNum,length);
+        console.log(avg);
+
+        // A등급 => 40이상     (avg >= 40)
+        // B등급 => 30 ~ 40    (avg >= 30 && avg < 40)
+        // C등급 => 20 ~ 30    (avg >= 20 && avg < 30)
+        // D등급 => 20미만     (avg < 20)
+
+        // 합격여부
+        if(avg >= 30){
+            verdict = '합격';
+        }else{
+            verdict = '실패';
+            // console.log('실패');
+        }
+
+        // 등급
+        if(avg >= 40){ 
+            grade='A등급'; 
+        }
+        else if(avg >= 30 && avg < 40){ 
+            grade='B등급'; 
+        }
+        else if(avg >= 20 && avg < 30){ 
+            grade='C등급'; 
+        }
+        else{
+            grade='D등급'; 
+        }
+
+        elV1.textContent = arrNum[0];
+        elV2.textContent = arrNum[1];
+        elV3.textContent = arrNum[2];
+        elV4.textContent = arrNum[3];
+        elV5.textContent = arrNum[4];
+
+        elT.textContent = total;
+        elA.textContent = avg;
+        // .textContent를 빼면 값을 변경하겠다는 (const X)의 의미라서 에러가뜸.
+        elG.textContent = grade;
+        elVd.textContent = verdict;
+
+
+
+
+    </script>
+    
+</body>
+</html>

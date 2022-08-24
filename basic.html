@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./js/basic.js"></script>
+</head>
+<body>
+<!-- 0530 -->
+
+    <!-- basic.html -->
+<!-- 
+    defer -> 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행됨 
+    async -> 페이지를 파싱되는 동안에도 스크립트가 실행됨 
+-->
+
+
+<!-- <script defer src="./basic.js"></script> -->
+    <div class="result"></div>
+
+    <!-- script가 div위로 올라가면 안됨 (Cannot set properties of null : 에러) 
+        but, defer라는 속성사용가능-->
+
+
+<!-- 
+    <script>
+
+    // .result{ 명령전달 }
+
+// 첫번째방법
+        document.querySelector('.result3').textContent='Hellow';
+        // document는html문서(이문서)전체를 가르킴. / querySelector는 . # 없음 으로(클래스 아이디 태그 구분)
+        // =의 의미는 대입 ('Hellow'라는 문자를 .result에 대입한다.)
+
+// 두번째방법
+        const elResult = document.querySelector('.result3')
+        // elResult <- 변수에 result3을 담아놈
+        elResult.textContent='Hellow';
+        elResult.textContent='Hellow';
+                    .
+                    .
+                    .
+
+// 셀렉터
+// 변수선언문 -> const, let, var
+        // const, let 동일한 변수의 이름 허용 안함
+        // const는 선언된 값을 변경할수 없음 (갱신)
+        // let은 선언된 값을 변경할수 있음
+
+        // var는 동일한 이름과 값을 모두 변경 또는 선언할수 있음
+
+        const elResult = document.querySelector('.result');
+
+        const elResult = document.querySelectorAll('.result');
+        // 밑에가 우선순위 (위에는지워짐)
+
+// 셀렉터안에 텍스트 입력하기
+        elResult.textContent='Hellow';
+
+    </script> -->
+
+</body>
+</html>

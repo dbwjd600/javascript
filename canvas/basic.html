@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- canvas > basic.html -->
+
+
+    <style>
+        canvas{
+            border: 1px solid #000;
+        }
+    </style>
+    <canvas width="1000" height="900"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        console.log(ctx);
+        //일러스트와비슷함.
+        // canvas.width/2 - 50
+        // ctx.fillRect(x,y,w,h);
+
+        ctx.fillStyle = '#f00';
+        ctx.fillRect(50,50,100,100);
+
+        ctx.strokeStyle = '#f00';
+        ctx.strokeRect(200,50,100,100);
+
+        // x,y,r,star,end,cw(방향)
+        ctx.arc(450,100,50,0,Math.PI*2,false);
+        ctx.stroke();
+        
+        //선굵기, 선색상, 선끝모양, 선좌표
+        // ctx.lineTo(x,y); 시작좌표
+        // ctx.lineTo(x,y); 끝좌표
+        ctx.beginPath();
+        //패스선 살아있어서 끝내야함. ctx.closePath(); <-다하고넣음
+        ctx.strokeStyle='#00f';
+        ctx.lineWidth=10;
+        ctx.lineCap='round'; //round square button
+        ctx.lineTo(600,100);
+        ctx.lineTo(800,100);
+        ctx.stroke();
+        ctx.closePath();
+
+        //Image()
+        const image = new Image();  // new Image라는 태그생성
+        image.src="../img/01.jpg";
+        image.addEventListener('load',function(){
+            ctx.drawImage(image,50,200,400,300);
+            ctx.drawImage(image,350,400,100,80);
+            ctx.drawImage(image,450,200,200,100,   450,200,200,100);
+        })
+
+        //video
+        //이슈 -> 소리X, play, pause, src
+        //원리 -> 원본 비디오를 플레이 후, 장면들을 캔버스에 출력
+
+        const video=document.createElement('video');
+        video.src = '../img/sea.mp4';
+        video.muted = 'muted';
+        video.play();
+
+        // 비디오가 시작되는 시점을 'canplaythrough' 라는 이벤트로 잡아낼수있습니다.
+        video.addEventListener('canplaythrough',videoFun);
+
+        function videoFun(){
+            //캔버스에 비디오출력 (이거딱한개)
+            ctx.drawImage(video,600,600,400,300);
+            console.log(event)
+
+            // 돔 값이 적용이 되고 난 후에, 다시 자기자신을 실행해줍니다. (출력후 재출력)
+            requestAnimationFrame(videoFun);
+
+        } //재귀함수 - 반복문과 유사 (빠르게 자기자신을 계속 호출)
+
+        //video ) 메소드 pause,play
+        canvas.addEventListener('click',function(){
+            console.log(video.paused) //재생하면 false / 멈춰있으면 true
+            if(video.paused){
+                video.play(); 
+            }else{
+                video.pause(); //false값 여기서 실행
+            }
+        });
+
+        console.log(window.innerHeight)
+    </script>
+
+</body>
+</html>

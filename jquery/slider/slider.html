@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="./slick.css" rel="stylesheet"> -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- test.html -->
+
+    <div class="slide-wrap">
+        <div class="slide">
+            <figure><img src="../../img/01.jpg"></figure>
+            <figure><img src="../../img/02.jpg"></figure>
+            <figure><img src="../../img/03.jpg"></figure>
+        </div>
+
+        <!-- <div class="indi">
+            <a></a><a class="active"></a><a></a>
+        </div>
+
+        <div class="btn">
+            <a>prev</a>
+            <a>next</a>
+        </div> -->
+    </div>
+
+    <style>
+        /* .slide-wrap{
+            width: 500px;
+            margin: 100px auto;
+            /* overflow: hidden;
+            position: relative;
+        } 필요없음 */
+        .slide{
+            width: 500px;
+            margin: 100px auto;
+
+            /* 고정값 */
+            position: relative;
+            /* overflow: hidden; */
+            /* 배너, 버튼, 인디게이터 모든 요소들의 최상위 부모 */
+        }
+        .slide .slick-list{ 
+            /* 배너들의 상위요소 */
+            overflow: hidden;
+        }
+        .slide .slick-track{
+            /* 배너 그룹 및 traslateX값으로 이동(스크립트) */
+        }
+        .slide .slick-track::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .slide .slick-slide{
+            /* 개별 배너 */
+            margin: 0;
+            width: 100%;
+            float: left;
+        }
+
+        /* ↓   부등호>를 걷으면 css 작동함   ↓*/
+        /* .slide figure{
+            margin: 0; 
+            flex-shrink: 0;
+            width: 100%;
+        } */
+        .slide .slide  figure  img{width: 100%;}
+
+        /* next prev */
+/* 브라우저에서 클래스명 찾아서 명령전달하기! */
+        /* .slide .btn{
+            position: absolute;
+            top: 50%; left: 0;
+            width: 100%;
+        } */
+        .slide .slick-prev{ 
+            position: absolute;
+            top: 50%; left: 0;
+            z-index: 2;
+        }
+        .slide .slick-next{
+            position: absolute;
+            top: 50%; right: 0;
+            z-index: 2;
+        }
+
+        /* dots */
+/* 앞에.slide넣어주기_부모. */
+        /* .slide .indi{
+            position: absolute;
+            left: 0; bottom: 5%;
+            width: 100%;
+            text-align: center;
+        }
+        .slide .indi > a{
+            width: 15px; height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .slide .indi > a.active{
+            background-color: rgb(55, 255, 0);
+        } */
+        .slide .slick-dots{
+            position: absolute;
+            left: 0; bottom: 5%;
+            width: 100%;
+            text-align: center;
+
+            /* ul태그의 기본값 없애서 위치 조정 */
+            list-style-type: none;
+            padding: 0;
+        }
+        .slide .slick-dots li{ display: inline-block;}
+        .slide .slick-dots li button{
+            width: 15px; height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            border: none;
+            font-size: 0;
+            margin: 0 10px;
+        }
+        .slide .slick-dots li.slick-active button{
+            background-color: rgb(55, 255, 0);
+        }
+
+    </style>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="./slick.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    // (바닐라의) load 이벤트랑 유사 / load보다 빠름
+        // html문서 코드들 파싱(읽고난)후, 실행 (이미지읽기전이라도)
+//  $(document).on('ready', function() {     →   $(function(){ 이렇게 바꿀수 있음
+$(function(){
+    $(".slide").slick({
+    dots: true,
+    // vertical: true,
+    // centerMode: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+    })
+  });
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 0531 -->
+
+    <!-- calc.html -->
+
+<div class="result"></div>
+
+<script>
+    var elResult = document.querySelector('.result');
+                                    //   (  메소드  )
+
+    // elResult.textContent = '<h1>Hellow</h1>';
+                //  ↑ 속성 ( .textContent )
+
+// elResult : 변수
+    // (첫)대문자 / 언더바(하이픈안됨) /  $  / 영문,소문자로 시작(숫자안됨)
+
+    elResult.innerHTML = '<h2>산술연산자</h2>';
+
+    // 10 + 10 = 20
+        // 위에 값을 만들기위해
+        // let이라는 선언, x라는 그릇에 10이라는 숫자를 담아놈
+    let x=10, y=10, total=null;
+    total = x + y;
+
+    x + '+' + y + '=' + total
+    // 영문(또는숫자)과 문자를 한줄에 기입을 하려면 연결시켜주는 "+ 기호"를 사용
+    // ex)
+    // 3 + '3'
+    // 33
+
+
+// 변수와 문자를 결합  ( ` : backquoto  )
+    // `x + y = total`  /  `${x} + ${y} = ${total}`
+    elResult.innerHTML += `${x} + ${y} = ${total}`;
+    // 기존의 값을 버리지 않고 새로운 값을 추가하고 싶을 때,
+    // = 연산자 앞에 + 을 넣으면 됨.
+
+    x=20;   // ★순서가중요함★ (위에서 아래방향으로 읽고 끝냄! 계속 밑으로만 내려감★)
+    // 20 * 10 = 200
+    total = x * y;
+    elResult.innerHTML += `<br>${x} * ${y} = ${total}`;
+
+    total=x-y
+    elResult.innerHTML += `<br>${x} - ${y} = ${total}`;
+
+    total=x/y
+    elResult.innerHTML += `<br>${x} / ${y} = ${total}`;
+
+
+// 할당 연산자 (변수에 값을 할당해서 갱신시킴) /  +=  /  숫자는 연산된 값을 얻고, 문자는 추가되고.
+    let z = 100;
+// 20 += 100 = 120
+    // 할당을 하게 되면 변수의 값이 변함 -> x=x+z(120=20+100)
+    //  x  =   x   +   z
+    //        20  +=  100
+
+    total = 0;
+    total += x;  //20 ( 0+20 = 20)
+    total += z;  //120 ( 20+100 = 120)
+
+    // elResult.innerHTML += `total(0)값에 x(20), z(100)값을 할당 = ${total}`;
+
+    // total += y;
+    // elResult.innerHTML += `<br> total(120)값에 y(10)값을 할당 = ${total}`;
+
+    //  x += y;  x(20)값에 y(10)할당 => x의 변수값이 30이됨 (x = 30)
+    //  x -= y;  x(30)값에 y(10)할당 => ( x = 20 )
+    //  x += 1;
+    //  x += 1;
+    //  x += 1;
+    //  x *= 5;
+    //  x /= 5;
+    //  console.log( x );  // -> 브라우저 콘솔창
+
+    let a= 10, b= 10;
+
+    elResult.innerHTML += `<hr><h2>할당 연산자(변수에 값을 할당해서 갱신시킴)</h2>`;
+    elResult.innerHTML += `변수선언 ( a=10, b=10)
+                            <br> a += b = ${a+=b}
+
+                            <br>
+                            ※문자를 할당시에는 추가,
+                            숫자를 할당시에는 연산,
+                            모든 연산기호 이용 가능.
+                        `;
+
+// 증감(++), 감소(--) 연산자
+    let c = 100;
+
+    elResult.innerHTML += `<hr><h2>증감(++), 감소(--) 연산자</h2>`;
+
+    // console.log(   c++  );  // ++ -> 1씩 찍힘 ( 콘솔 ) / 앞(전위),뒤(후위)
+    // console.log(    c   );
+
+    elResult.innerHTML += ` 변수선언 (c = 100)
+                            <br> 
+                            연산자 기호는 값의 전, 후에 넣을 수 있음
+
+                            <br><br>
+                            -> 이전일때는 기호에 따라 값이 즉시 변경됨
+                            -> 이후일때는 명령이 끝나고 난후에 변경됨
+
+                            <br><br>
+                            ex) <br>
+                            ++c => ${++c} <br>
+                            c++ => ${c++} <br>
+                            ${c}
+                        `;
+
+
+
+
+    elResult.innerHTML += ``;
+
+
+
+
+
+
+
+
+// querySelector() -> 엘리먼트 태그요소 선택자
+// textContent -> 텍스트형태의 문자
+// innerHTML -> HTML형태의 문자
+
+
+</script>
+    
+</body>
+</html>

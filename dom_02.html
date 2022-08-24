@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 0614 -->
+
+    <!-- dom_02.html -->
+    <article>
+        <h2>오브젝트 위치 및 크기</h2>
+        <div>
+            <figure><img src="img/01.jpg"></figure>
+            <figure><img src="img/02.jpg"></figure>
+            <figure><img src="img/03.jpg"></figure>
+        </div>
+        <style>
+            article{width:30%; margin:100px auto;}
+            article div{position:relative}
+            /* 브라우저가 부모 - 절대좌표   =>>  부모가(div)포지션가지면 - 상대좌표 */
+            article figure{margin:100px 0;}
+            article figure img{width:100%}
+        </style>
+    </article>
+
+
+    <script>
+        function init(){
+            // offsetHeight, offsetWidth, offsetTop, offsetLeft
+            const elFigure = document.querySelectorAll('figure');
+            let offset = [];
+            let clientRect = [];
+
+            elFigure.forEach(function(el){
+
+                clientRect.push( el.getBoundingClientRect() );
+                // 브라우저 상단으로부터의 거리 (상대적) 스크롤에 따라 달라짐 (top위치) / 문서기준아님
+
+                offset.push(
+                    {
+                        w:el.offsetWidth, 
+                        h:el.offsetHeight,
+                        x:el.offsetLeft,
+                        y:el.offsetTop
+                        // ↑  y:el.offsetTop ->> 부모가 포지션을 가지면 상대좌표가 되는게 단점
+                    }
+                );
+            });
+
+            console.log(  clientRect  )
+        }
+
+        window.addEventListener('load',init);
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- ex_random2.html -->
+    <article>
+        <h2>가위바위보 게임</h2>
+        <div>
+            <div class="total">
+                <p>total point : 100</p>
+                <div class="score">
+                    <p>COMPUTER</p><b>0</b>
+                    <p>YOU</p><b>0</b>
+                </div>
+                <p class="result">START!</p>
+            </div>
+            <div>
+                <div class="random">
+                    <p><img src="./img/1.png" alt=""></p>
+                    <button><span>START</span></button>
+                </div>
+                <div class="try">
+                    <img src="./img/1.png">
+                    <img src="./img/2.png">
+                    <img src="./img/3.png">
+                </div>
+            </div>
+        </div>
+        <style>
+            article{width:500px; margin: 0 auto;}
+            div{text-align: center;}
+            article>div>div:nth-last-of-type(2){margin: 0 auto;}
+            .total >p:nth-child(1){background-color: #eee; width: 150px; padding: 5px 0; margin: 30px auto;}
+            .result{font-size: 30px; color: #fff; background-color: #f90; width: 200px; padding: 10px 0; margin: 0 auto; margin-top: 50px;}
+            .random {display: flex; justify-content: center; align-items: flex-end;}
+            .random > p{width: 100px;}
+            .score{display: flex; justify-content: space-between; align-items: center; margin:20px auto}
+            .score > b{font-size: 50px;}
+            .score > p:nth-child(1){font-size: 15px; color: #fff; background-color: rgb(70, 57, 255); width: 100px; padding: 5px 0;}
+            .score > p:nth-of-type(2){font-size: 15px; color: #fff; background-color: rgb(251, 75, 75); width: 100px; padding: 5px 0;}
+            .try{width: 100px; display: flex; justify-content: center; margin: 20px auto;}
+            .try img{ margin:30px;}
+            img{width: 100%;}
+            button{font-size: 20px;  height: 50px; margin-left: 50px;}
+        </style>
+    </article>
+
+    <script>
+        // let data = [
+        //     {url:'./img/1.png',tit:'묵'},
+        //     {url:'./img/2.png',tit:'찌'},
+        //     {url:'./img/3.png',tit:'빠'},
+        // ];
+
+        // let C = $('.result').text('YOU LOSE..')
+        // function game(C,Y){
+        //     clearInterval(loop);
+        //     if($('.random img').attr('src',`./img/1.png`)){
+        //         $('.result').text(C)
+        //     }else if($('.random img').attr('src',`./img/2.png`)){
+        //         $('.result').text('YOU WIN!!')
+        //     }else if($('.random img').attr('src',`./img/3.png`)){
+        //         $('.result').text('YOU LOSE..')
+        //     }
+        // };
+
+        // $('.try img:nth-of-type(2)').click(function(){
+        //     clearInterval(loop);
+        //     if($('.random img').attr('src',`./img/1.png`)){
+        //         $('.result').text('YOU LOSE..')
+        //     }else if($('.random img').attr('src',`./img/2.png`)){
+        //         $('.result').text('YOU LOSE..')
+        //     }else if($('.random img').attr('src',`./img/3.png`)){
+        //         $('.result').text('YOU WIN!!')
+        //     }
+        //     if($('.result').text('YOU LOSE..')){
+        //     ++score;
+        //     notgood();}
+        //     else if($('.result').text('YOU WIN!!')){
+        //     ++score;
+        //     good();
+        // }})
+
+        let loop,ran;
+        function interval(){
+            loop = setInterval(function(){
+                        ran = Math.random() * 3 + 1;
+                        $('.random img').attr('src',`./img/${Math.floor(ran)}.png`);
+                                        // ↑ 주소 불러오는 명령코드
+                    },100);
+        }
+        let button = $('button').click(function(){
+            clearInterval(loop);
+            interval();
+        });
+        let score = 0;
+        function notgood(){
+            score += 1;
+            $('.score > b:nth-child(1)').text(score);
+        };
+        function good(){
+            score += 1;
+            $('.score > b:nth-child(2)').text(score)
+        };
+// 바위 - 1 가위 - 2 보 - 3
+        $('.try img:nth-of-type(1)').click(function(){
+            clearInterval(loop);
+            if(ran < 2){
+                $('.result').text('YOU LOSE..')
+                notgood();
+            }else if( ran > 2){
+                $('.result').text('YOU LOSE..')
+                notgood();
+            }else{
+                $('.result').text('YOU WIN!!')
+                good();
+            }
+            $('button > span').text('REPLAY');
+        })
+
+        $('.try img:nth-of-type(2)').click(function(){
+            clearInterval(loop);
+            if($('.random img').attr('src',`./img/1.png`)){
+                $('.result').text('YOU LOSE..')
+                notgood();
+            }else if($('.random img').attr('src',`./img/2.png`)){
+                $('.result').text('YOU LOSE..')
+                good();
+            }else if($('.random img').attr('src',`./img/3.png`)){
+                $('.result').text('YOU WIN!!')
+                notgood();
+            }
+            $('button > span').text('REPLAY');
+        })
+
+        $('.try img:nth-of-type(3)').click(function(){
+            clearInterval(loop);
+            if( $('.random img').attr('src',`./img/1.png`)  ){
+                $('.result').text('YOU WIN!!')
+                notgood();
+            }else if($('.random img').attr('src',`./img/2.png`)){
+                $('.result').text('YOU LOSE..')
+                good();
+            }else if($('.random img').attr('src',`./img/3.png`)){
+                $('.result').text('YOU LOSE..')
+                notgood();
+            }
+            $('button > span').text('REPLAY');
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- animation.html -->
+
+    <canvas width="1000" height="1000"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // 대상물체가 시도되는 위치가 어디인지 알기위함.
+        let size = {w:canvas.width, h:canvas.height};
+
+        let circle = {x:50,y:200,dx:10,dy:10,r:50,c:'#f00'};
+
+        function ran(){
+            return Math.floor(Math.random()*256);
+
+        }
+        console.log( ran())
+
+        function drawFn(){
+
+            // (로직) 가로사이즈 == circle.x / 가로사이즈 < circle.x
+            // if(1000 > circle.x){
+            //     circle.x+=10;
+            // }else{
+            //     circle.x-=10;
+            // }
+
+            circle.x += circle.dx;
+            circle.y += circle.dy;
+
+            if(size.w-circle.r< circle.x || circle.x < circle.r){
+                circle.dx *= -1;
+                circle.c = `rgb(${ran()},${ran()},${ran()})`;
+            }
+            if(size.h-circle.r< circle.y || circle.y <  circle.r){
+                circle.dy *= -1;
+                // circle.c = `rgb(${ran()},${ran()},${ran()})`;
+                // circle.r = ran()
+            }
+
+            //그렸다가 다시 지우고 그렸다가.. (이동하는 것처럼)
+            ctx.clearRect(0,0,size.w,size.h)
+
+            ctx.beginPath();
+            ctx.fillStyle = circle.c;
+            ctx.arc(circle.x,circle.y,circle.r,0,Math.PI*2);
+            ctx.fill();
+
+            // 재실행 -> line 쭉그려짐. (계속 캔버스를 그려줌)
+            requestAnimationFrame(drawFn);
+        }
+        drawFn();
+
+        // 함수도 배열에 담아서 반복문 돌리면 몇개씩 만들수있음
+
+    </script>
+    <!-- 캔버스가 일러스트랑 비슷함 -->
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- animation.html -->
+
+    <style>canvas{border:  1px solid #f00};</style>
+    <canvas width="1000" height="1000"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        let size = {w:canvas.width, h:canvas.height};
+
+        // progress
+        let p = {text:100,ang:Math.PI*2};
+
+        let num = 0;
+        function drawFn(n){
+    
+            p.text = num;
+            p.ang = (Math.PI*2) * (num-25) /100;
+            // Math.PI(180º)를 써야 원이 만들어짐
+
+            ctx.clearRect(0,0,size.w,size.h);
+            // ctx.save();
+            
+            //     //캔버스(전체)를 돌림 / 움직임
+            //     ctx.translate(0,500)
+            //     ctx.rotate(Math.PI*1.5); //270º
+
+            //     ctx.beginPath();
+            //     ctx.lineWidth = 30;
+            //     ctx.strokeStyle = '#f00'
+            //     ctx.arc(300,200,100,0,p.ang);
+            //     ctx.stroke();
+            // ctx.restore();
+
+            ctx.beginPath();
+            ctx.lineWidth = 30;
+            ctx.strokeStyle = '#f00'
+            ctx.arc(200,200,100,Math.PI/-2,p.ang);
+            ctx.stroke();
+
+            ctx.font = '40px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${p.text}%`,200,200);
+
+            if( num < n){
+                num ++;
+                requestAnimationFrame( ()=> drawFn(n) );
+                // 함수 집어넣을때 바로실행해버리기 때문에 ()=> 사용
+            }
+            
+            cancelAnimationFrame();
+        };
+        drawFn(100); //인수값
+
+
+    </script>
+</body>
+</html>

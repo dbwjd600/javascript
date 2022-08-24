@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 0610 -->
+
+    <!-- function.html -->
+
+    <script>
+
+        // 함수선언식(호이스팅O), 함수표현식(호이스팅X)
+        // 함수선언식
+        // function 함수이름(){ }
+        // 실행 => 함수이름()
+
+        // 함수표현식
+        // let 함수이름 = function(){  }
+        // 실행 => 함수이름()
+
+
+        // 함수는 전달받은값↓ ()안에 들어오는 문자를 매개변수로 인식함 (string이아닌, 변수로)
+        function fun(...전달받은값) {
+            // return은 값을 반환시키고 실행중인 함수를 종료함
+            return 전달받은값;
+        }
+        console.log(fun(100, 200, 250, 300, 400));
+
+        // function fun( 숫자1,숫자2,숫자3,숫자4,.. ) {                     }
+        // function fun( 숫자1, ...나머지숫자 ) {  return 나머지숫자;        }
+                            //  ㄴ 무조건 점 ... 세개!
+                                            // {  return arguments[1];     }
+                                            // {  return arguments.length; }
+        // console.log( fun(  100,200,250,300,400 ) );
+
+        // function fun( 숫자값, 문자값 ) {   return 문자값 +숫자값;   }
+        // console.log( fun(  100, '하이~' ) );
+            // 선택자.textContetn = fun();
+    </script>
+
+
+    <article class="ex1">
+        <h2>함수 - 증감값 활용</h2>
+        <div>
+            <button>증감</button>
+            <button>감소</button>
+            <code>0</code>
+        </div>
+    </article>
+
+    <script>
+
+        const elBtn = document.querySelectorAll('.ex1 button');
+        const elCode = document.querySelector('.ex1 code');
+
+        let num = 0;
+
+        function good(param) {
+            if (param == '증가') {
+                if (num < 5) num++;
+            } else {
+                if (num > 0) num--;
+            }
+            // if문안에 또다른 if문 들어갈수 있음
+            elCode.textContent = num;
+        }
+        //    ↓ 공간의이름 [0] 을 써줘야함 (배열)
+        elBtn[0].addEventListener('click', function () {
+            // num++;
+            // good();
+
+            // good();
+            // num++;
+            //  ㄴ 값안나옴 ★순서중요★
+
+            // good( num++ );
+            //  ㄴ 전역변수라서 실행되는 명령 (num이라는 전역변수는 어디서든 이용가능)
+
+            // if(num < 5) num++;
+            good('증가');
+            //      ↑ 인자값,인수값
+        })
+        elBtn[1].addEventListener('click', function () {
+            // if(num > 0)num--;
+            // 한줄처리 ↑ 중괄호{} 생략가능
+            good('감소');
+        })
+
+                // 조건문은 0을 false 1(또는 1이상)을 ture로 인식
+
+    </script>
+
+    <article class="ex2">
+        <h2> 자판기 예제 </h2>
+
+        <div class="coin">
+            <button>500</button>
+            <button>1000</button>
+        </div>
+
+        <div class="total"> <code>0</code>원 </div>
+
+        <div class="choice">
+            <button>밀크커피(300)</button>
+            <button>고급밀크커피(400)</button>
+            <button>아메리카노(600) </button>
+        </div>
+        <div class="guide">
+            <button>거스름돈 반환</button>
+            <div><code></code>원</div>
+
+            아래 동전버튼을 눌러 원하는 커피를 2개 고르시오.
+            조건) 총금액 - 1000원
+        </div>
+        <style>
+            .ex2 {
+                width: 500px;
+                margin: 200px auto;
+                border: 1px solid #ddd;
+                padding: 40px;
+            }
+            .ex2 .total {
+                background: rgb(255, 166, 0); color: #fff;
+                text-align: center;
+                padding: 10px 0;
+            }
+            .ex2 .total>code {
+                color: rgba(255, 255, 255, );
+                font-size: 2rem;
+            }
+            .ex2 .choice {
+                background: #ddd;
+                padding: 20px;
+                text-align: center;
+            }
+            .ex2 .guide { padding: 60px 0 0; white-space: pre-line;}
+            .ex2 .coin {
+                width: 150px;
+                border: 3px solid rgb(255, 166, 0);
+                border-bottom: none;
+                text-align: center; 
+                padding: 8px;
+                margin: 0 auto;
+            }
+        </style>
+    </article>
+
+    <script>
+        // alert('금액이 부족합니다!')
+        const coffeBtn = document.querySelectorAll('.choice button');
+        const elTotal = document.querySelector('.total code');
+        const coffeCoin = document.querySelectorAll('.coin button')
+        const elGuide = document.querySelector('.guide button')
+        const elChange = document.querySelector('.guide div code')
+
+        let totalPrice = 0;
+
+        function good(){
+            elTotal.textContent = totalPrice;
+        }
+        function changeFun(coin){
+            if(totalPrice >= coin){
+                totalPrice = totalPrice -= coin;
+            }else{ alert('금액이 부족합니다!')}
+            good();
+        }
+
+        coffeBtn[0].addEventListener('click', function(){
+            changeFun(300)
+        });
+        coffeBtn[1].addEventListener('click', function(){
+            changeFun(400)
+        });
+        coffeBtn[2].addEventListener('click', function(){
+            if(totalPrice >= 600){
+                totalPrice -= 600;
+                good();
+            }else{ alert('금액이 부족합니다!')}
+        });
+
+        coffeCoin[0].addEventListener('click',function(){
+            if(totalPrice < 3000){
+                totalPrice = totalPrice += 500;
+                good();
+            }
+        })
+        coffeCoin[1].addEventListener('click',function(){
+            if(totalPrice < 3000){
+                totalPrice = totalPrice += 1000;
+                good();
+            }
+        })
+
+        elGuide.addEventListener('click',function(){
+            elChange.textContent = elTotal.textContent;
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 0530 -->
+
+    <!-- ex_click-class.html -->
+    <div class="popup"> 팝업 내용 </div>
+    <button class="btn"> 팝업내용보기 </button>
+    <!-- div와 button 두개의 앨리먼트가 명령을 줄 셀렉터임
+        ▶ 버튼(.btn)을 '클릭'하면 popup div(.popup)에 active클래스를 추가
+        (두가지 일을 해야함)-->
+
+    <script>
+        const elBtn = document.querySelector('.btn');
+        const elpopup = document.querySelector('.popup');
+
+        elBtn.addEventListener('click',function(){  
+            elpopup.classList.add('active');
+        });
+        // function은 함수라는 뜻 ( 모아놨다가 우리가원하는 시점에 시행시킬수있다)
+        // elbtn에 -> 'click'(이벤트명칭)을  /  elpopup에 -> 'active'을
+        // addEventListener(' 명칭 ',function(){ '실행할명령' }
+
+        // alt + 방향키
+
+        // 클릭했을때 (이벤트가 발생했을 때), 중괄호{} 안에 명령이 들어간다고 생각하면됨.
+        // 스크립트는 중괄호!
+
+        // elpopup.classList.add('active');
+        // classlist안에 여러명령있는데 그중에서 add라는 명령을사용함.
+
+// 닫힘
+        elpopup.addEventListener('click',function(){  
+            elpopup.classList.remove('active');
+        });
+
+
+    </script>
+
+    <style>
+        .popup{
+            width: 500px; height: 500px;
+            border: 1px solid #000;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.4) ;
+            position: absolute;
+            left: 30%; top: 20%;
+            display: none;
+        }
+        .popup.active{ display: block; }
+    </style>
+
+</body>
+</html>

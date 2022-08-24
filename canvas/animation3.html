@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- animation.html -->
+    <!-- 다중선택을 위한 함수사용 -->
+
+    <style>canvas{border:  1px solid #f00};</style>
+    <canvas width="1000" height="1000"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        let size = {w:canvas.width, h:canvas.height};
+
+        // 전역변수 c라는 변수를 또 생성함
+        // x를변경하면 모든애들이 변경됨
+        let c = {x:100,y:100};
+
+        // 생성자함수 : 여러개를 찍어낼수 있는 함수
+        // 앞에 new를 반드시 붙여야하고, 생성된 함수를 담을 그릇에 담아야함
+        // x 가 변경이아닌,속성이다. ( 100이 값 )   
+        // 속성과 값으로 만들어진 데이터
+        // 따로따로 제어가 가능함
+        function CreateCircle(){
+            this.x = 100,
+            this.y = 100
+        }
+        let item = new CreateCircle();
+        let item2 = new CreateCircle();
+
+        item2.x = 200;
+
+        console.log( item.x);
+        console.log( item2.x);
+
+
+        // 예시로 ) 슬릭 슬라이드
+        // 슬라이드소스는 하나지만 클래스 이름다르게 사용하면 각각 모두 동작함
+
+        // 생성자 함수를 배열에 담으면
+        // array[0].x
+
+
+
+        function drawFn(n){
+
+                ctx.beginPath();
+                ctx.lineWidth = 30;
+                ctx.strokeStyle = '#f00'
+                ctx.arc(c.x,c.y,100,0,Math.PI*2);
+                ctx.stroke();
+
+        };
+        drawFn(100);
+
+
+    </script>
+</body>
+</html>

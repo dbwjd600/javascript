@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 0610 -->
+
+    <!-- interval.html -->
+
+    <script>
+        // setInterval, setTimeout <=> clearInterval, clearTimeout
+                        // 딱한번만 <=> 계속해서 실행 
+
+        let loop;
+        function interval(){
+            loop =  setInterval(function(){
+                        console.log(100);
+                    },1000);
+                    // 1초 = 1000 / 3초 = 3000
+        }
+        interval();
+
+        setTimeout(function(){
+            clearInterval(loop); // 죽이는명령
+        },3100);
+
+        setTimeout(function(){
+            interval();
+        },6000);
+
+        // 내가 원하는 시점에 실행 - '비동기' 방식 (컴퓨터는 '동기')
+
+    </script>
+
+    <article class="ex1">
+        <h2>카운트</h2>
+        <div>0</div>
+        <style>
+            .ex1{margin: 100px; text-align: center;}
+            .ex1 div{font-size: 5rem; background-color: #ddd;}
+        </style>
+    </article>
+
+    <script>
+        const elEx1 = document.querySelector('.ex1 div')
+
+        let count = 0;
+        let countInterval = setInterval(function(){
+                                if(count < 100){
+                                    count++;   // count뒤에 ++이 붙으니깐 => 99 + 1(++) =100이 되서 => count < 100
+                                    elEx1.textContent = count;
+                                    elEx1.style = `width:${count}%`;   // 여러개에 스타일 쓸때 방법
+                                }else{clearInterval(countInterval);}   // 1초후에 죽는거
+                            },100);
+
+    </script>
+
+</body>
+</html>
